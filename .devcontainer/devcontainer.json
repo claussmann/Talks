@@ -6,6 +6,14 @@
     },
   
     "postAttachCommand": {
-      "install_latex": "sudo apt update; sudo apt install texlive"
+      "install_latex": "sudo apt update; sudo apt --yes install texlive texlive-lang-german texlive-pictures texlive-latex-extra"
+    },
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "James-Yu.latex-workshop"
+            ]
+        }
     }
   }

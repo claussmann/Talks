@@ -6,6 +6,6 @@
     },
   
     "postAttachCommand": {
-      "server": "sudo apt update install texlive"
+      "install_latex": "sudo apt update; sudo apt install texlive"
     }
   }

@@ -1,0 +1,21 @@
+% Packages
+\usepackage{hyperref}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{maincolor}{RGB}{102, 0, 51}
+\definecolor{secondarycolor}{RGB}{153, 0, 153}
+\definecolor{thirdcolor}{RGB}{102, 0, 204}
+
+% Beamer theme
+\setbeamercolor{titlelike}{fg=maincolor}
+\setbeamercolor{frametitle}{fg=maincolor}
+\setbeamertemplate{frametitle}{\vspace{0,4cm}\huge\bfseries\insertframetitle}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+    \;\;\;\;
+    \textcolor{secondarycolor}{\textbf{\insertpagenumber/\inserttotalframenumber}}
+    \hfill
+    \href{https://github.com/claussmann}{\textcolor{secondarycolor}{@claussmann}}
+    \;\;\;\;\vspace{0.2cm}
+}

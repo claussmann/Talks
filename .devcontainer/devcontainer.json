@@ -6,7 +6,7 @@
     },
   
     "postAttachCommand": {
-      "install_latex": "sudo apt update; sudo apt --yes install texlive texlive-lang-german texlive-pictures texlive-latex-extra"
+      "install_latex": "sudo apt update; sudo apt --yes install texlive texlive-lang-german texlive-pictures texlive-latex-extra latexmk"
     },
     
     "customizations": {

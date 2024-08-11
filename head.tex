@@ -10,7 +10,11 @@
 % Beamer theme
 \setbeamercolor{titlelike}{fg=maincolor}
 \setbeamercolor{frametitle}{fg=maincolor}
-\setbeamertemplate{frametitle}{\vspace{0,4cm}\huge\bfseries\insertframetitle}
+\setbeamertemplate{frametitle}{
+    \vspace{0,4cm}\LARGE\textbf{\insertframetitle}
+    \hfill
+    \normalsize\insertsection
+}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}{
     \;\;\;\;

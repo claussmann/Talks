@@ -11,6 +11,8 @@
 \frame{\titlepage}
 
 
+\section{Einführung}
+
 
 \begin{frame}{Bargeldzahlung}
     Bild: Anna gibt Bert eine Münze.
@@ -55,5 +57,50 @@
     \end{itemize}
 \end{frame}
 
+
+\section{Unveränderlichkeit}
+
+\begin{frame}{Die Blockchain}
+    \begin{itemize}
+        \item Transaktionen werden in Blöcken gebündelt.
+        \item Jeder Block ist mit seinem Vorgänger verbunden.
+        \pause
+        \textbf{Aber wie?}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hash-Pointer}
+    \begin{itemize}
+        \item Jeder Block enthält den Hash des direkten Vorgängers.
+        \item Dadurch ist der Vorgänger-Block eindeutlig identifiziert.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Gebrochene Kette}
+    \begin{itemize}
+        \item Ändern eines Blocks, ändert seinen Hash.
+        \item Dadurch bricht die `Kette'.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Reparatur einer gebrochenen Kette}
+    \begin{itemize}
+        \item Wir müssen den Hash-Pointer in \textbf{allen} folgenden Blöcken anpassen.
+        \pause
+        \item \textbf{Wir wollen natürlich verhindern, dass das passiert!}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Nonce und Hash-Challenge}
+    \begin{itemize}
+        \item Wir akzeptieren nur Hash-Werte, die mindestens $X$ Nullen enthalten.
+        \item Es muss eine passende Nonce durch ausprobieren gefunden werden.
+        \item \textbf{Das dauert seht lang!}
+    \end{itemize}
+\end{frame}
 
 \end{document}

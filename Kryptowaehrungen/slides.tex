@@ -11,6 +11,9 @@
 \frame{\titlepage}
 
 
+
+
+
 \section{Einführung}
 
 
@@ -62,8 +65,8 @@
 
 \begin{frame}{Die Blockchain}
     \begin{itemize}
-        \item Transaktionen werden in Blöcken gebündelt.
-        \item Jeder Block ist mit seinem Vorgänger verbunden.
+        \item Transaktionen zu Blöcken gebündelt
+        \item Jeder Block ist mit Vorgänger verbunden.
         \pause
         \textbf{Aber wie?}
     \end{itemize}
@@ -72,35 +75,99 @@
 
 \begin{frame}{Hash-Pointer}
     \begin{itemize}
-        \item Jeder Block enthält den Hash des direkten Vorgängers.
-        \item Dadurch ist der Vorgänger-Block eindeutlig identifiziert.
+        \item Jeder Block enthält Hash des Vorgängers
+        \item Vorgänger und Reihenfolge eindeutlig identifiziert
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Gebrochene Kette}
     \begin{itemize}
-        \item Ändern eines Blocks, ändert seinen Hash.
-        \item Dadurch bricht die `Kette'.
+        \item Ändern eines Blocks, ändert seinen Hash $\Rightarrow$ `Kette bricht'.
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Reparatur einer gebrochenen Kette}
     \begin{itemize}
-        \item Wir müssen den Hash-Pointer in \textbf{allen} folgenden Blöcken anpassen.
+        \item Hash-Pointer muss in \textbf{allen} folgenden Blöcken sngepasst werden
         \pause
-        \item \textbf{Wir wollen natürlich verhindern, dass das passiert!}
+        \item \textbf{Wir wollen das natürlich verhindern!}
     \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Nonce und Hash-Challenge}
     \begin{itemize}
-        \item Wir akzeptieren nur Hash-Werte, die mindestens $X$ Nullen enthalten.
-        \item Es muss eine passende Nonce durch ausprobieren gefunden werden.
-        \item \textbf{Das dauert seht lang!}
+        \item Akzeptieren nur Hash-Werte mit mindestens $X$ Nullen
+        \item Passende Nonce durch ausprobieren finden \textbf{(sogenanntes /emph{Mining})}
+        \item Angreifer müssten schneller alte Blöcke bearbeiten, als Miner neue erstellen.
     \end{itemize}
 \end{frame}
+
+
+
+
+
+
+\section{Authorisierung}
+
+\begin{frame}{Accounterstellung}
+		\begin{itemize}
+				\item Wallet erzeugt Public- und Private-Key
+				\item Public-Key (bzw. Ableitung davon) bildet `Kontonummer'
+		\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Überweisung Authorisieren}
+		\begin{itemize}
+				\item Signatur der Überweisung mittels Private-Key
+				\item Signatur kann durch Public-Key von jedem überprüft werden
+		\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Gültigkeit}
+
+\begin{frame}{Wann ist Transaktion gültig?}
+		\begin{itemize}
+				\item Transaktion wurde authorisiert $\Rightarrow$ Signatur
+				\item Sender hat genug Geld $\Rightarrow$ In vorherigen Blöcken nach unverbrauchter Gutschrift suchen
+		\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Mining}
+
+\begin{frame}{Blöcke erschaffen}
+		\begin{itemize}
+				\item Miner haben jeweils Kopie der Blockchain
+				\item Miner versuchen jeweils neue Blöcke anzuhängen und allen mitzuteilen
+				\item Nur gültige neue Blöcke werden von anderen Minern aufgenommen
+		\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Woher kommt das Geld?}
+		\begin{itemize}
+				\item Miner bekommt Belohnung für neuen Block
+				\item Miner werden \textbf{aus Eigennutz das Protokoll einhalten}, da ihr Block sonst nicht akzeptiert wird
+		\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Fork}
+		\begin{itemize}
+			\item Mittelfristig gewinnt die längere Kette
+		\end{itemize}
+\end{frame}
+
 
 \end{document}

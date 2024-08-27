@@ -5,7 +5,14 @@
 \usepackage{xcolor}
 \definecolor{maincolor}{RGB}{102, 0, 51}
 \definecolor{secondarycolor}{RGB}{153, 0, 153}
-\definecolor{thirdcolor}{RGB}{102, 0, 204}
+\definecolor{thirdcolor}{RGB}{10, 20, 115}
+%
+\definecolor{myred}{RGB}{219, 9, 9}
+\definecolor{mygreen}{RGB}{16, 230, 27}
+\definecolor{mygrassgreen}{RGB}{105, 150, 26}
+\definecolor{myyellow}{RGB}{229, 250, 37}
+\definecolor{myblue}{RGB}{8, 140, 166}
+\definecolor{myviolet}{RGB}{145, 16, 181}
 
 % Beamer theme
 \setbeamercolor{titlelike}{fg=maincolor}
@@ -25,3 +32,12 @@
 }
 \setbeamertemplate{itemize item}{\color{maincolor}$\blacktriangleright$}
 \setbeamertemplate{itemize subitem}{\color{secondarycolor}$\blacktriangleright$}
+
+%% Title slide at section
+\newcommand{\includesectiontitle}{
+    \begin{frame}
+        \begin{center}
+            \LARGE\textbf{\textcolor{thirdcolor}{\insertsection}}
+        \end{center}
+    \end{frame}
+}

@@ -63,22 +63,23 @@
 
 
 \section{Unveränderlichkeit}
+\includesectiontitle
 
 \begin{frame}[fragile]{Die Blockchain}
     \begin{center}
-        \boxwithtitle{3.5cm}{a}{Block \#1}{
+        \boxwithtitle{3.85cm}{a}{Block \#1}{
             Transaktion 1\\
             Transaktion 2\\
             ...
         }
-        \hspace{1cm}
-        \boxwithtitle{3.5cm}{b}{Block \#2}{
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{Block \#2}{
             Transaktion 3\\
             Transaktion 4\\
             ...
         }
-        \hspace{1cm}
-        \boxwithtitle{3.5cm}{c}{Block \#3}{
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{Block \#3}{
             Transaktion 7\\
             Transaktion 8\\
             ...
@@ -93,19 +94,19 @@
 
 \begin{frame}{Hash-Pointer}
     \begin{center}
-        \boxwithtitle{3.5cm}{a}{c6cc}{
+        \boxwithtitle{3.85cm}{a}{c6cc}{
             Vorgänger: null\\
             Transaktionen:\\
             ...
         }
-        \hspace{1cm}
-        \boxwithtitle{3.5cm}{b}{afaa}{
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{afaa}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
             ...
         }
-        \hspace{1cm}
-        \boxwithtitle{3.5cm}{c}{7ffa}{
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{7ffa}{
             Vorgänger: \textbf{afaa}\\
             Transaktionen:\\
             ...
@@ -115,30 +116,194 @@
         \draw[->, line width=2pt] (b) -- (a);
         \draw[->, line width=2pt] (c) -- (b);
     \end{tikzpicture}
-    \begin{itemize}
-        \item Jeder Block enthält Hash des Vorgängers
-        \item Vorgänger und Reihenfolge eindeutlig identifiziert
-    \end{itemize}
+    \pause
+
+    \terminalbox{christian@dev \$\_}{
+        \$\_\;\; echo 'Hallo Christian' | sha256sum\\
+        \phantom{...} 37c24999d0c3f6b0d295c19699bc121c6b7c194fb957b15bdb3582c60edf3a1f\\~\\
+        \$\_\;\; echo 'hallo christian' | sha256sum\\
+        \phantom{...} e52c859ed0b18b5dcce6d177caf000b19c7c578504f9dbc626580387b1f79ab5
+    }
 \end{frame}
 
 
 \begin{frame}{Gebrochene Kette}
-    Bild: Kette mit rotem Kreutz
-    \begin{itemize}
-        \item Ändern eines Blocks, ändert seinen Hash $\Rightarrow$ `Kette bricht'.
-    \end{itemize}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myviolet}{afaa}}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            \textcolor{myviolet}{\textbf{Anna sendet 4}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{7ffa}{
+            Vorgänger: \textbf{\textcolor{myviolet}{afaa}}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
+
+    \pause
+    \begin{center}
+        \boxwithtitle{3.85cm}{e}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{f}{\textcolor{myblue}{6ae7}}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            \textcolor{myblue}{\textbf{Anna sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{g}{7ffa}{
+            Vorgänger: \textbf{\textcolor{myviolet}{afaa}}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (f) -- (e);
+        \draw[->, dashed, line width=2pt, color=myred] (g) -- (f);
+    \end{tikzpicture}
 \end{frame}
 
 
 \begin{frame}{Reparatur einer gebrochenen Kette}
-    Bild: Kette mit grünen Verbindungen
-    \begin{itemize}
-        \item Hash-Pointer muss in \textbf{allen} folgenden Blöcken angepasst werden
-        \pause
-        \item \textbf{Wir wollen das natürlich verhindern!}
-    \end{itemize}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            \textcolor{myblue}{\textbf{Anna sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{7ffa}{
+            Vorgänger: \textbf{\textcolor{myviolet}{afaa}}\\
+            Transaktionen:\\
+            ...
+        }
+
+        \vspace{1.5cm}
+
+        \boxwithtitle{3.85cm}{e}{22ea}{
+            Vorgänger: \textbf{5aff}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{d}{5aff}{
+            Vorgänger: \textbf{7ffa}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, dashed, line width=2pt, color=myred] (c) -- (b);
+        \draw[->, line width=2pt] (d) -- (c);
+        \draw[->, line width=2pt] (e) -- (d);
+    \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{Reparatur einer gebrochenen Kette}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            \textcolor{myblue}{\textbf{Anna sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{\textcolor{myblue}{dad4}}{
+            Vorgänger: \textbf{\textcolor{myblue}{6ae7}}\\
+            Transaktionen:\\
+            ...
+        }
+
+        \vspace{1.5cm}
+
+        \boxwithtitle{3.85cm}{e}{22ea}{
+            Vorgänger: \textbf{5aff}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{d}{5aff}{
+            Vorgänger: \textbf{\textcolor{myviolet}{7ffa}}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+        \draw[->, dashed, line width=2pt, color=myred] (d) -- (c);
+        \draw[->, line width=2pt] (e) -- (d);
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Reparatur einer gebrochenen Kette}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            \textcolor{myblue}{\textbf{Anna sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{\textcolor{myblue}{dad4}}{
+            Vorgänger: \textbf{\textcolor{myblue}{6ae7}}\\
+            Transaktionen:\\
+            ...
+        }
+
+        \vspace{1.5cm}
+
+        \boxwithtitle{3.85cm}{e}{22ea}{
+            Vorgänger: \textbf{\textcolor{myviolet}{5aff}}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{d}{\textcolor{myblue}{85a7}}{
+            Vorgänger: \textbf{\textcolor{myblue}{dad4}}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+        \draw[->, line width=2pt] (d) -- (c);
+        \draw[->, dashed, line width=2pt, color=myred] (e) -- (d);
+    \end{tikzpicture}
+\end{frame}
 
 \begin{frame}{Nonce und Hash-Challenge}
     Bild: Block mit Content inkl Nonce
@@ -155,6 +320,7 @@
 
 
 \section{Authorisierung}
+\includesectiontitle
 
 \begin{frame}{Accounterstellung}
     Bild: Anna neben Public Key Adresse
@@ -178,6 +344,7 @@
 
 
 \section{Gültigkeit}
+\includesectiontitle
 
 \begin{frame}{Wann ist Transaktion gültig?}
     Bild: Block mit grünem Haken
@@ -192,6 +359,7 @@
 
 
 \section{Mining}
+\includesectiontitle
 
 \begin{frame}{Blöcke erschaffen}
     Bild: Miner hämmert auf Block rum

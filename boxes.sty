@@ -1,12 +1,11 @@
 \usepackage[most]{tcolorbox}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning}
 
 
 
 
 %%%%%%
-%%%%%%
+%%%%%% Box with Title
 %%%%%%
 
 % Width, ID, Title, Content
@@ -18,10 +17,28 @@
                 colback={gray!10}, 
                 colbacktitle=gray!80, 
                 title={\textbf{#3}},
-                halign=center,
-                valign=center, 
                 enhanced]    
         #4
     \end{tcolorbox} 
 }
 
+%%%%%%
+%%%%%% Terminalbox
+%%%%%%
+
+% Width, ID, Title, Content
+\newcommand{\terminalbox}[2]{
+    \begin{tcolorbox}[
+                width=\textwidth,
+                colback={gray!40}, 
+                colbacktitle=black!80, 
+                title={
+                    \textbf{#1}
+                    \hfill
+                    \tikz\draw[red, fill=mygreen, draw=none] (0,0) circle (5pt);
+                    \tikz\draw[red, fill=myyellow, draw=none] (0,0) circle (5pt);
+                    \tikz\draw[red, fill=myred, draw=none] (0,0) circle (5pt);
+                }]    
+        #2
+    \end{tcolorbox} 
+}

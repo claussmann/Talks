@@ -1,6 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 
 \usepackage{../theme}
+\usepackage{../boxes}
 
 \title{\textbf{\Huge Krypto Währungen}}
 \author{\textcolor{secondarycolor}{\textbf{Christian Laussmann}}}
@@ -63,19 +64,57 @@
 
 \section{Unveränderlichkeit}
 
-\begin{frame}{Die Blockchain}
-    Bild: Kette mit Transaktionen drin
-    \begin{itemize}
-        \item Transaktionen zu Blöcken gebündelt
-        \item Jeder Block ist mit Vorgänger verbunden.
-        \pause
-        \textbf{Aber wie?}
-    \end{itemize}
+\begin{frame}[fragile]{Die Blockchain}
+    \begin{center}
+        \boxwithtitle{3.5cm}{a}{Block \#1}{
+            Transaktion 1\\
+            Transaktion 2\\
+            ...
+        }
+        \hspace{1cm}
+        \boxwithtitle{3.5cm}{b}{Block \#2}{
+            Transaktion 3\\
+            Transaktion 4\\
+            ...
+        }
+        \hspace{1cm}
+        \boxwithtitle{3.5cm}{c}{Block \#3}{
+            Transaktion 7\\
+            Transaktion 8\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
 \end{frame}
 
 
 \begin{frame}{Hash-Pointer}
-    Bild: Block mit Hash content zeigt auf vorgänger
+    \begin{center}
+        \boxwithtitle{3.5cm}{a}{c6cc}{
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{1cm}
+        \boxwithtitle{3.5cm}{b}{afaa}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{1cm}
+        \boxwithtitle{3.5cm}{c}{7ffa}{
+            Vorgänger: \textbf{afaa}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
     \begin{itemize}
         \item Jeder Block enthält Hash des Vorgängers
         \item Vorgänger und Reihenfolge eindeutlig identifiziert

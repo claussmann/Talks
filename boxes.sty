@@ -1,0 +1,27 @@
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+
+
+
+%%%%%%
+%%%%%%
+%%%%%%
+
+% Width, ID, Title, Content
+\newcommand{\boxwithtitle}[4]{
+    \begin{tcolorbox}[
+                nobeforeafter,
+                width=#1,
+                remember as=#2,
+                colback={gray!10}, 
+                colbacktitle=gray!80, 
+                title={\textbf{#3}},
+                halign=center,
+                valign=center, 
+                enhanced]    
+        #4
+    \end{tcolorbox} 
+}
+

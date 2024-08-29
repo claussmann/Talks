@@ -19,26 +19,38 @@
 
 
 \begin{frame}{Bargeldzahlung}
-    Bild: Anna gibt Bert eine Münze.
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \includegraphics[width=2.5cm]{../icons/Alan} & {\Huge$\longrightarrow$} & \includegraphics[width=2cm]{../icons/Coin} & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Linus}\\
+            Alan & & & & Linus\\
+        \end{tabular}
+    \end{center}
+    \vspace{0.5cm}
 
     \pause
     \textbf{Das funktioniert, weil:}
     \begin{itemize}
-        \item Anna \textbf{besitzt} die Münze und \textbf{darf} sie abgeben.
-        \item Bert \textbf{besitzt} anschließend die Münze und kann damit bezahlen.
-        \item Anna kann Bert die Münze nicht \textbf{wegnehmen} oder die Münze \textbf{erneut ausgeben}.
+        \item Alan \textbf{besitzt} die Münze und \textbf{darf} sie abgeben.
+        \item Linus \textbf{besitzt} anschließend die Münze und kann damit bezahlen.
+        \item Alan kann Linus die Münze nicht \textbf{wegnehmen} oder die Münze \textbf{erneut ausgeben}.
     \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}{Überweisung}
-    Bild: Anna sitzt am Computer beim Onlinebanking. Ihre Bank redet mit der Bank von Bert. Bert erhält eine Nachricht aufs Handy, dass das Geld auf seinem Konto ist.
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \includegraphics[width=2cm]{../icons/Alan}\includegraphics[width=1.5cm]{../icons/ComputerLeft} & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Bank} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/ComputerRight}\includegraphics[width=2cm]{../icons/Linus}\\
+            Alan & & Prüfung durch Bank & & Linus\\
+        \end{tabular}
+    \end{center}
+    \vspace{0.5cm}
 
     \pause
     \begin{itemize}
-        \item \textbf{Gültigkeit:} Annas Bank prüft Annas Kontostand. Gesetze und Zentralbanken verhindern Betrug zwischen den Banken.
-        \item \textbf{Authorisierung:} Anna hat Zugangsdaten zum Onlinebanking.
+        \item \textbf{Gültigkeit:} Alans Bank prüft Alans Kontostand. Gesetze und Zentralbanken verhindern Betrug zwischen den Banken.
+        \item \textbf{Authorisierung:} Alan hat Zugangsdaten zum Onlinebanking.
         \item \textbf{Unveränderlichkeit:} Sichergestellt durch Gesetze und Zentralbanken.
     \end{itemize}
 \end{frame}
@@ -46,18 +58,20 @@
 
 
 \begin{frame}{Krypto-Überweisung}
-    Bild: Anna sitzt am Computer am Krypto-Wallet. Sie schreibt in eine Datenbank im Internet den Satz \emph{Anna überweist 5 coins an Bert} Bert schaut in die Datenbank.
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \includegraphics[width=2cm]{../icons/Alan}\hspace*{-0.5cm}\includegraphics[width=1.5cm]{../icons/ComputerLeft} & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Internet}\hspace*{-1.5cm}\includegraphics[width=2cm]{../icons/DB} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/ComputerRight}\hspace*{-0.5cm}\includegraphics[width=2cm]{../icons/Linus}\\
+            Alan & & ``Alan sendet Linus \includegraphics[width=0.5cm]{../icons/Coin}'' & & Linus\\
+        \end{tabular}
+    \end{center}
+    \vspace{0.5cm}
 
     \pause
     \begin{itemize}
-        \item \textbf{Gültigkeit:} Wer prüft, ob Anna genug Geld hat?
+        \item \textbf{Gültigkeit:} Wer prüft, ob Alan genug Geld hat?
         \item \textbf{Authorisierung:} Wie ist garantiert, dass jeder nur eigenes Geld überweisen kann?
-        \item \textbf{Unveränderlichkeit:} Wer garantiert, dass Transaktionen nicht rückgängig gemacht werden?
-    \end{itemize}
-
-    \vfill
-    \begin{itemize}
-        \item \textbf{Niemand vertraut den anderen.} Vertrauen in die Währung muss anders hergestellt werden.
+        \item \textbf{Unveränderlichkeit:} Wer garantiert, dass Transaktionen nicht bearbeitet werden?
+        \item \textbf{Niemand vertraut den anderen -- nur der Mathematik.}
     \end{itemize}
 \end{frame}
 
@@ -138,7 +152,7 @@
         \boxwithtitle{3.85cm}{b}{\textcolor{myviolet}{afaa}}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
-            \textcolor{myviolet}{\textbf{Anna sendet 4}}
+            \textcolor{myviolet}{\textbf{Alan sendet 4}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{c}{7ffa}{
@@ -163,7 +177,7 @@
         \boxwithtitle{3.85cm}{f}{\textcolor{myblue}{6ae7}}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
-            \textcolor{myblue}{\textbf{Anna sendet 1}}
+            \textcolor{myblue}{\textbf{Alan sendet 1}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{g}{7ffa}{
@@ -190,7 +204,7 @@
         \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
-            \textcolor{myblue}{\textbf{Anna sendet 1}}
+            \textcolor{myblue}{\textbf{Alan sendet 1}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{c}{7ffa}{
@@ -232,7 +246,7 @@
         \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
-            \textcolor{myblue}{\textbf{Anna sendet 1}}
+            \textcolor{myblue}{\textbf{Alan sendet 1}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{c}{\textcolor{myblue}{dad4}}{
@@ -274,7 +288,7 @@
         \boxwithtitle{3.85cm}{b}{\textcolor{myblue}{6ae7}}{
             Vorgänger: \textbf{c6cc}\\
             Transaktionen:\\
-            \textcolor{myblue}{\textbf{Anna sendet 1}}
+            \textcolor{myblue}{\textbf{Alan sendet 1}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{c}{\textcolor{myblue}{dad4}}{
@@ -306,14 +320,98 @@
 \end{frame}
 
 \begin{frame}{Nonce und Hash-Challenge}
-    Bild: Block mit Content inkl Nonce
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{00a4}{
+            Nonce: 42\\
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{002e}{
+            Nonce: 7736\\
+            Vorgänger: \textbf{00a4}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{00fa}{
+            Nonce: 4322\\
+            Vorgänger: \textbf{002e}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
     \begin{itemize}
-        \item Akzeptieren nur Hash-Werte mit mindestens $X$ Nullen
-        \item Passende Nonce durch ausprobieren finden \textbf{(sogenanntes /emph{Mining})}
-        \item Angreifer müssten schneller alte Blöcke bearbeiten, als Miner neue erstellen.
+        \item Wir akzeptieren nur Hash-Werte mit mindestens $X$ Nullen
+        \item Passende Nonce durch ausprobieren finden \textbf{(\emph{Mining})}
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Hash-Challenge}
+    \terminalbox{christian@dev \$\_}{
+        \$\_\;\; echo '\textbf{Alan sendet 3. \textcolor{myblue}{Nonce: 737}. Vorgänger: 00af}' | sha256sum\\
+        \phantom{...} \textcolor{myviolet}{96c7...}\\~\\\pause
+        \$\_\;\; echo '\textbf{Alan sendet 3. \textcolor{myblue}{Nonce: 325}. Vorgänger: 00af}' | sha256sum\\
+        \phantom{...} \textcolor{myviolet}{b95a...}\\~\\\pause
+        \$\_\;\; echo '\textbf{Alan sendet 3. \textcolor{myblue}{Nonce: 129}. Vorgänger: 00af}' | sha256sum\\
+        \phantom{...} \textcolor{myviolet}{0ad2...}\\~\\\pause
+        \$\_\;\; echo '\textbf{Alan sendet 3. \textcolor{myblue}{Nonce: 729}. Vorgänger: 00af}' | sha256sum\\
+        \phantom{...} \textcolor{myviolet}{101d...}\\
+        ...
+    }
+\end{frame}
+
+\begin{frame}{Fazit bis hier}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{00a4}{
+            Nonce: 43732\\
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myred}{af3f}}{
+            Nonce: 77236\\
+            Vorgänger: \textbf{00a4}\\
+            Transaktionen:\\
+            \textcolor{myred}{\textbf{Alan sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{000a}{
+            Nonce: 9776762\\
+            Vorgänger: \textbf{\textcolor{myred}{006b}}\\
+            Transaktionen:\\
+            ...
+        }
+
+        \vspace{1cm}
+
+        \boxwithtitle{3.85cm}{e}{009d}{
+            Nonce: 42\\
+            Vorgänger: \textbf{00e3}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{d}{00e3}{
+            Nonce: 334221\\
+            Vorgänger: \textbf{000a}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, dashed, line width=2pt, color=myred] (c) -- (b);
+        \draw[->, line width=2pt] (d) -- (c);
+        \draw[->, line width=2pt] (e) -- (d);
+    \end{tikzpicture}
+\end{frame}
 
 
 
@@ -323,7 +421,7 @@
 \includesectiontitle
 
 \begin{frame}{Accounterstellung}
-    Bild: Anna neben Public Key Adresse
+    Bild: Alan neben Public Key Adresse
     \begin{itemize}
         \item Wallet erzeugt Public- und Private-Key
         \item Public-Key (bzw. Ableitung davon) bildet `Kontonummer'
@@ -332,7 +430,7 @@
 
 
 \begin{frame}{Überweisung Authorisieren}
-    Bild: Anna neben Private Key
+    Bild: Alan neben Private Key
     \begin{itemize}
         \item Signatur der Überweisung mittels Private-Key
         \item Signatur kann durch Public-Key von jedem überprüft werden

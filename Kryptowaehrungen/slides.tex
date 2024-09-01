@@ -421,19 +421,26 @@
 \includesectiontitle
 
 \begin{frame}{Accounterstellung}
-    Bild: Alan neben Public Key Adresse
-    \begin{itemize}
-        \item Wallet erzeugt Public- und Private-Key
-        \item Public-Key (bzw. Ableitung davon) bildet `Kontonummer'
-    \end{itemize}
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \includegraphics[width=2cm]{../icons/Linus} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/PubKey} \hspace*{-0.5cm} \includegraphics[width=1.5cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & {\Huge Hash(\includegraphics[width=1.5cm]{../icons/PubKey})}\\~\\
+            Linus & erzeugt & & veröffentlicht & Kontonummer\\
+        \end{tabular}
+    \end{center}
 \end{frame}
 
 
 \begin{frame}{Überweisung Authorisieren}
-    Bild: Alan neben Private Key
+    \begin{center}
+        \begin{tabular}{ccl}
+            \includegraphics[width=2cm]{../icons/Linus} \hspace*{-0.5cm} \includegraphics[width=1cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & \textbf{TX =} ``Überweise \includegraphics[width=0.5cm]{../icons/Coin} an bc1qy3...'',\\
+            & & \textbf{Sig(\includegraphics[width=0.5cm]{../icons/SecKey}, TX)}, \includegraphics[width=0.5cm]{../icons/PubKey}\\
+        \end{tabular}
+    \end{center}
+    \vspace{1cm}
     \begin{itemize}
-        \item Signatur der Überweisung mittels Private-Key
-        \item Signatur kann durch Public-Key von jedem überprüft werden
+        \item Jeder kann mittels \includegraphics[width=0.5cm]{../icons/PubKey} prüfen, dass \textbf{Sig(\includegraphics[width=0.5cm]{../icons/SecKey}, TX)} gültig ist.
+        \item Kontonummer ist eindeutig mit \includegraphics[width=0.5cm]{../icons/PubKey} verknüpft.
     \end{itemize}
 \end{frame}
 
@@ -445,44 +452,138 @@
 \includesectiontitle
 
 \begin{frame}{Wann ist Transaktion gültig?}
-    Bild: Block mit grünem Haken
+    \textbf{TX = ``Überweise \includegraphics[width=0.5cm]{../icons/Coin} an bc1qy3...''}\\~\\
     \begin{itemize}
-        \item Transaktion wurde authorisiert $\Rightarrow$ Signatur
-        \item Sender hat genug Geld $\Rightarrow$ In vorherigen Blöcken nach unverbrauchter Gutschrift suchen
+        \item Transaktion authorisiert? $\Rightarrow$ Signatur \textcolor{mydarkgreen}{\Large\checkmark}
+        \item Kontostand ausreichend?
     \end{itemize}
 \end{frame}
 
 
+\begin{frame}{Prüfen des Kontostands}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            b6e $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} \textcolor{myviolet}{\textbf{a5e}}\\
+            ee4 $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} 3d2\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{afaa}{
+            \textcolor{myviolet}{\textbf{a5e}} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cc7\\
+            4ed $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} 95a\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{7ffa}{
+            95a $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} aed\\
+            e5e $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cf2\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
+    \vspace{0.75cm}
+    \textbf{TX = ``\textcolor{myviolet}{\textbf{a5e}} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cc7''}
+    \begin{itemize}
+        \item Transaktion authorisiert? $\Rightarrow$ Signatur \textcolor{mydarkgreen}{\Large\checkmark}
+        \item Kontostand ausreichend? $\Rightarrow$ Suchen ob Geld auf Konto \textcolor{mydarkgreen}{\Large\checkmark}
+    \end{itemize}
+\end{frame}
 
+
+\begin{frame}{Verhindern von \emph{Double-Spent}}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{c6cc}{
+            b6e $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} \textcolor{myviolet}{\textbf{a5e}}\\
+            ee4 $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} 3d2\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{afaa}{
+            \textcolor{myviolet}{\textbf{a5e}} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cc7\\
+            4ed $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} 95a\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{7ffa}{
+            \textcolor{myviolet}{\textbf{a5e}} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} bb6\\
+            e5e $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cf2\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+    \end{tikzpicture}
+    \vspace{0.75cm}
+    \textbf{TX = ``\textcolor{myviolet}{\textbf{a5e}} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Coin} cc7''}
+    \begin{itemize}
+        \item Transaktion authorisiert? $\Rightarrow$ Signatur \textcolor{mydarkgreen}{\Large\checkmark}
+        \item Kontostand ausreichend? $\Rightarrow$ Geld bereits ausgegeben \textcolor{myred}{\Large X}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Fazit bis hier}
+    \begin{itemize}
+        \item \textbf{Blockchain und Nonce:} Transaktionen sind unveränderlich
+        \item \textbf{Signaturen:} Nur Eigentümer kann Überweisen
+        \item \textbf{Block-Historie:} Kontostand prüfen
+    \end{itemize}
+    \vspace{1cm}
+    \pause
+    \textbf{Offene Fragen:}
+    \begin{itemize}
+        \item Wer prüft das?
+        \item Wer erstellt neue Blöcke?
+        \item Woher kommen die Coins ursprünglich?
+    \end{itemize}
+\end{frame}
 
 
 \section{Mining}
 \includesectiontitle
 
 \begin{frame}{Blöcke erschaffen}
-    Bild: Miner hämmert auf Block rum
-    \begin{itemize}
-        \item Miner haben jeweils Kopie der Blockchain
-        \item Miner versuchen jeweils neue Blöcke anzuhängen und allen mitzuteilen
-        \item Nur gültige neue Blöcke werden von anderen Minern aufgenommen
-    \end{itemize}
+    \begin{center}
+        \begin{tabular}{ccccc}
+            TX1, TX2, TX3, ... & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Server} & {\Huge$\longrightarrow$} & \boxwithtitle{3.25cm}{c}{7ffa}{Vorgänger, Nonce, TX1, TX2, TX3, ...}\\
+            & & Sammeln, Prüfen, &\\
+            & & Nonce finden, &\\
+            & & \emph{\textbf{(Mining)}} &\\
+        \end{tabular}
+    \end{center}
 \end{frame}
 
 
 \begin{frame}{Woher kommt das Geld?}
-    Bild: Miner hämmert auf Block rum -- Münze daneben
-    \begin{itemize}
-        \item Miner bekommt Belohnung für neuen Block
-        \item Miner werden \textbf{aus Eigennutz das Protokoll einhalten}, da ihr Block sonst nicht akzeptiert wird
-    \end{itemize}
+    \begin{center}
+        \begin{tabular}{ccccc}
+            TX1, TX2, TX3, ... & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Server} & {\Huge$\longrightarrow$} & \boxwithtitle{3.25cm}{c}{7ffa}{Vorgänger, Nonce, TX1, TX2, TX3, ..., \includegraphics[width=0.5cm]{../icons/Coin} $\rightarrow$ \includegraphics[width=0.5cm]{../icons/Server}}\\
+            & & Sammeln, Prüfen, &\\
+            & & Nonce finden, &\\
+            & & \emph{\textbf{(Mining)}} &\\
+        \end{tabular}
+    \end{center}
 \end{frame}
 
 
 \begin{frame}{Fork}
-    Bild: Kette mit Fork
-    \begin{itemize}
-        \item Mittelfristig gewinnt die längere Kette
-    \end{itemize}
+    \begin{center}
+        \begin{tabular}{ccccc}
+            \boxwithtitle{2cm}{a}{c6cc}{...}\;\; & \boxwithtitle{2cm}{b}{aed3}{...}\;\; & \boxwithtitle{2cm}{c}{27ef}{...}\;\; & \only<2->{\boxwithtitle{2cm}{d}{fe5e}{...}\;\;} & \only<3>{\boxwithtitle{2cm}{e}{864f}{...}\;\;}\\~\\
+            & & & \only<2->{\boxwithtitle{2cm}{f}{6ee6}{...}\;\;} & \\
+        \end{tabular}
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+        \only<2->{\draw[->, line width=2pt] (d) -- (c);}
+        \only<2->{\draw[->, line width=2pt] (f) -- (c);}
+        \only<3->{\draw[->, line width=2pt] (e) -- (d);}
+    \end{tikzpicture}
 \end{frame}
 
 
@@ -492,7 +593,7 @@
 
 % End and Bonus
 
-\input{../end}
+\finalslide{IT-Security}{Computational Social Choice}{Softwareentwicklung \& -Architektur}
 
 
 

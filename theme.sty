@@ -1,5 +1,6 @@
 % Packages
 \usepackage{hyperref}
+\usepackage{amssymb}
 
 % Colors
 \usepackage{xcolor}
@@ -10,6 +11,7 @@
 \definecolor{myred}{RGB}{219, 9, 9}
 \definecolor{mygreen}{RGB}{16, 230, 27}
 \definecolor{mygrassgreen}{RGB}{105, 150, 26}
+\definecolor{mydarkgreen}{RGB}{0, 150, 38}
 \definecolor{myyellow}{RGB}{229, 250, 37}
 \definecolor{myblue}{RGB}{8, 140, 166}
 \definecolor{myviolet}{RGB}{145, 16, 181}
@@ -39,5 +41,31 @@
         \begin{center}
             \LARGE\textbf{\textcolor{thirdcolor}{\insertsection}}
         \end{center}
+    \end{frame}
+}
+
+%% End-Slide
+\newcommand{\finalslide}[3]{
+    \begin{frame}{}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+               \textbf{\LARGE \textcolor{maincolor}{Christian Laussmann}}\\
+                \textbf{\large Software Developer}\\~\\
+                \href{https://github.com/claussmann}{\textcolor{thirdcolor}{\emph{github.com/claussmann}}}\\
+                \emph{\textcolor{thirdcolor}{Add me on LinkedIn}}
+
+                \vspace{1.5cm}
+                \textbf{Selected Topics:}
+                \begin{itemize}
+                    \item #1
+                    \item #2
+                    \item #3
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \hfill Logo
+                \vspace{3cm}
+            \end{column}
+        \end{columns}
     \end{frame}
 }

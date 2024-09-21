@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install LaTeX
         run: sudo apt-get install texlive texlive-lang-german texlive-pictures texlive-latex-extra latexmk
@@ -19,6 +19,6 @@ jobs:
       - name: Upload slides
         uses: actions/upload-artifact@v4
         with:
-          name: slides.zip
-          path: slides.zip
+          name: Slides
+          path: slides
           retention-days: 14

@@ -11,14 +11,14 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install LaTeX
-        run: sudo apt-get install texlive texlive-lang-german texlive-pictures texlive-latex-extra
+        run: sudo apt-get install install texlive texlive-lang-german texlive-pictures texlive-latex-extra latexmk
 
-      - name: Compile Krypto-Vortrag
-        run: cd Kryptowaehrungen; pdflatex slides.tex
+      - name: Compile slides
+        run: make package
 
-      - name: 'Upload Krypto-Vortrag PDF'
+      - name: Upload slides
         uses: actions/upload-artifact@v4
         with:
-          name: Kryptowaehrungen.pdf
-          path: Kryptowaehrungen/slides.pdf
-          retention-days: 5
+          name: slides.zip
+          path: slides.zip
+          retention-days: 14

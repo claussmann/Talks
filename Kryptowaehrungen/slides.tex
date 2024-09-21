@@ -17,28 +17,7 @@
 
 \section{Einführung}
 
-
-\begin{frame}{Bargeldzahlung}
-    \begin{center}
-        \begin{tabular}{ccccc}
-            \includegraphics[width=2.5cm]{../icons/Alan} & {\Huge$\longrightarrow$} & \includegraphics[width=2cm]{../icons/Coin} & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Linus}\\
-            Alan & & & & Linus\\
-        \end{tabular}
-    \end{center}
-    \vspace{0.5cm}
-
-    \pause
-    \textbf{Das funktioniert, weil:}
-    \begin{itemize}
-        \item Alan \textbf{besitzt} die Münze und \textbf{darf} sie abgeben.
-        \item Linus \textbf{besitzt} anschließend die Münze und kann damit bezahlen.
-        \item Alan kann Linus die Münze nicht \textbf{wegnehmen} oder die Münze \textbf{erneut ausgeben}.
-    \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{Überweisung}
+\begin{frame}{Bank-Überweisung}
     \begin{center}
         \begin{tabular}{ccccc}
             \includegraphics[width=2cm]{../icons/Alan}\includegraphics[width=1.5cm]{../icons/ComputerLeft} & {\Huge$\longrightarrow$} & \includegraphics[width=2.5cm]{../icons/Bank} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/ComputerRight}\includegraphics[width=2cm]{../icons/Linus}\\
@@ -79,34 +58,7 @@
 \section{Unveränderlichkeit}
 \includesectiontitle
 
-\begin{frame}[fragile]{Die Blockchain}
-    \begin{center}
-        \boxwithtitle{3.85cm}{a}{Block \#1}{
-            Transaktion 1\\
-            Transaktion 2\\
-            ...
-        }
-        \hspace{0.7cm}
-        \boxwithtitle{3.85cm}{b}{Block \#2}{
-            Transaktion 3\\
-            Transaktion 4\\
-            ...
-        }
-        \hspace{0.7cm}
-        \boxwithtitle{3.85cm}{c}{Block \#3}{
-            Transaktion 7\\
-            Transaktion 8\\
-            ...
-        }
-    \end{center}
-    \begin{tikzpicture}[overlay, remember picture]
-        \draw[->, line width=2pt] (b) -- (a);
-        \draw[->, line width=2pt] (c) -- (b);
-    \end{tikzpicture}
-\end{frame}
-
-
-\begin{frame}{Hash-Pointer}
+\begin{frame}{Die Blockchain}
     \begin{center}
         \boxwithtitle{3.85cm}{a}{c6cc}{
             Vorgänger: null\\
@@ -130,14 +82,34 @@
         \draw[->, line width=2pt] (b) -- (a);
         \draw[->, line width=2pt] (c) -- (b);
     \end{tikzpicture}
-    \pause
 
+    \pause
+    \begin{itemize}
+        \item Wie entsteht der ``Name'' bzw. die ``ID'' der Blöcke?
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hashing}
     \terminalbox{christian@dev \$\_}{
         \$\_\;\; echo 'Hallo Christian' | sha256sum\\
         \phantom{...} 37c24999d0c3f6b0d295c19699bc121c6b7c194fb957b15bdb3582c60edf3a1f\\~\\
         \$\_\;\; echo 'hallo christian' | sha256sum\\
         \phantom{...} e52c859ed0b18b5dcce6d177caf000b19c7c578504f9dbc626580387b1f79ab5
     }
+\end{frame}
+
+
+\begin{frame}{Hash-Pointer}
+    \begin{center}
+        {\Huge Hash(}
+        \boxwithtitle{3.85cm}{b}{}{
+            Vorgänger: \textbf{c6cc}\\
+            Transaktionen:\\
+            Alan sendet 4
+        }
+        {\Huge ) = afaa...}
+    \end{center}
 \end{frame}
 
 
@@ -319,7 +291,7 @@
     \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Nonce und Hash-Challenge}
+\begin{frame}{Hash-Challenge}
     \begin{center}
         \boxwithtitle{3.85cm}{a}{00a4}{
             Nonce: 42\\
@@ -347,7 +319,7 @@
         \draw[->, line width=2pt] (c) -- (b);
     \end{tikzpicture}
     \begin{itemize}
-        \item Wir akzeptieren nur Hash-Werte mit mindestens $X$ Nullen
+        \item Wir akzeptieren nur Hash-Werte mit \textbf{mindestens 2 Nullen}
         \item Passende Nonce durch ausprobieren finden \textbf{(\emph{Mining})}
     \end{itemize}
 \end{frame}
@@ -375,16 +347,16 @@
             ...
         }
         \hspace{0.7cm}
-        \boxwithtitle{3.85cm}{b}{\textcolor{myred}{af3f}}{
+        \boxwithtitle{3.85cm}{b}{\textcolor{myred}{af3f} \;\textcolor{myviolet}{(006b)}}{
             Nonce: 77236\\
-            Vorgänger: \textbf{00a4}\\
+            Vorgänger: 00a4\\
             Transaktionen:\\
-            \textcolor{myred}{\textbf{Alan sendet 1}}
+            \textcolor{myred}{\textbf{Alan sendet 1} \;\textcolor{myviolet}{\not{2}}}
         }
         \hspace{0.7cm}
         \boxwithtitle{3.85cm}{c}{000a}{
             Nonce: 9776762\\
-            Vorgänger: \textbf{\textcolor{myred}{006b}}\\
+            Vorgänger: \textbf{\textcolor{myviolet}{006b}}\\
             Transaktionen:\\
             ...
         }
@@ -413,6 +385,53 @@
     \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{Fazit bis hier}
+    \begin{center}
+        \boxwithtitle{3.85cm}{a}{00a4}{
+            Nonce: 43732\\
+            Vorgänger: null\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{b}{\textcolor{myred}{002e}}{
+            Nonce: \textcolor{myred}{5445}\\
+            Vorgänger: 00a4\\
+            Transaktionen:\\
+            \textcolor{myred}{\textbf{Alan sendet 1}}
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{c}{\textcolor{myred}{67e3} \; \textcolor{myviolet}{(000a)}}{
+            Nonce: 9776762\\
+            Vorgänger: \textbf{\textcolor{myred}{002e}}\\
+            Transaktionen:\\
+            ...
+        }
+
+        \vspace{1cm}
+
+        \boxwithtitle{3.85cm}{e}{009d}{
+            Nonce: 42\\
+            Vorgänger: \textbf{00e3}\\
+            Transaktionen:\\
+            ...
+        }
+        \hspace{0.7cm}
+        \boxwithtitle{3.85cm}{d}{00e3}{
+            Nonce: 334221\\
+            Vorgänger: \textbf{\textcolor{myviolet}{000a}}\\
+            Transaktionen:\\
+            ...
+        }
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \draw[->, line width=2pt] (b) -- (a);
+        \draw[->, line width=2pt] (c) -- (b);
+        \draw[->, dashed, line width=2pt, color=myred] (d) -- (c);
+        \draw[->, line width=2pt] (e) -- (d);
+    \end{tikzpicture}
+\end{frame}
+
 
 
 
@@ -423,24 +442,27 @@
 \begin{frame}{Accounterstellung}
     \begin{center}
         \begin{tabular}{ccccc}
-            \includegraphics[width=2cm]{../icons/Linus} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/PubKey} \hspace*{-0.5cm} \includegraphics[width=1.5cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & {\Huge Hash(\includegraphics[width=1.5cm]{../icons/PubKey})}\\~\\
+            \includegraphics[width=2cm]{../icons/Linus} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/PubKey} \hspace*{-0.5cm} \includegraphics[width=1.5cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & \includegraphics[width=1.5cm]{../icons/PubKey}\\~\\
             Linus & erzeugt & & veröffentlicht & Kontonummer\\
         \end{tabular}
     \end{center}
+    \vspace{1cm}
+    \begin{itemize}
+        \item An \includegraphics[width=0.5cm]{../icons/PubKey} kann man Geld senden.
+    \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Überweisung Authorisieren}
     \begin{center}
         \begin{tabular}{ccl}
-            \includegraphics[width=2cm]{../icons/Linus} \hspace*{-0.5cm} \includegraphics[width=1cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & \textbf{TX =} ``Überweise \includegraphics[width=0.5cm]{../icons/Coin} an bc1qy3...'',\\
-            & & \textbf{Sig(\includegraphics[width=0.5cm]{../icons/SecKey}, TX)}, \includegraphics[width=0.5cm]{../icons/PubKey}\\
+            \includegraphics[width=2cm]{../icons/Linus} \hspace*{-0.5cm} \includegraphics[width=1cm]{../icons/SecKey} & {\Huge$\longrightarrow$} & \textbf{TX =} ``Überweise \includegraphics[width=0.5cm]{../icons/Coin} von \includegraphics[width=0.5cm]{../icons/PubKey} an bc1qy3...'',\\
+            & & \textbf{Sig(\includegraphics[width=0.5cm]{../icons/SecKey}, TX)}\\
         \end{tabular}
     \end{center}
     \vspace{1cm}
     \begin{itemize}
         \item Jeder kann mittels \includegraphics[width=0.5cm]{../icons/PubKey} prüfen, dass \textbf{Sig(\includegraphics[width=0.5cm]{../icons/SecKey}, TX)} gültig ist.
-        \item Kontonummer ist eindeutig mit \includegraphics[width=0.5cm]{../icons/PubKey} verknüpft.
     \end{itemize}
 \end{frame}
 
@@ -451,7 +473,7 @@
 \section{Gültigkeit}
 \includesectiontitle
 
-\begin{frame}{Wann ist Transaktion gültig?}
+\begin{frame}{Wann ist eine Transaktion gültig?}
     \textbf{TX = ``Überweise \includegraphics[width=0.5cm]{../icons/Coin} an bc1qy3...''}\\~\\
     \begin{itemize}
         \item Transaktion authorisiert? $\Rightarrow$ Signatur \textcolor{mydarkgreen}{\Large\checkmark}

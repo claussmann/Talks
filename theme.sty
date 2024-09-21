@@ -1,0 +1,77 @@
+% Packages
+\usepackage{hyperref}
+\usepackage{amssymb}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{maincolor}{RGB}{102, 0, 51}
+\definecolor{secondarycolor}{RGB}{153, 0, 153}
+\definecolor{thirdcolor}{RGB}{10, 20, 115}
+%
+\definecolor{myred}{RGB}{219, 9, 9}
+\definecolor{mygreen}{RGB}{16, 230, 27}
+\definecolor{mygrassgreen}{RGB}{105, 150, 26}
+\definecolor{mydarkgreen}{RGB}{0, 150, 38}
+\definecolor{myyellow}{RGB}{229, 250, 37}
+\definecolor{myblue}{RGB}{8, 140, 166}
+\definecolor{myviolet}{RGB}{145, 16, 181}
+
+% Beamer theme
+\setbeamercolor{titlelike}{fg=maincolor}
+\setbeamercolor{frametitle}{fg=maincolor}
+\setbeamertemplate{frametitle}{
+    \vspace{0,4cm}\LARGE\textbf{\insertframetitle}
+    \hfill
+    \normalsize\insertsection
+}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+    \;\;\;\;
+    \textcolor{secondarycolor}{\textbf{\insertframenumber/\inserttotalframenumber}}
+    \hfill
+    \href{https://github.com/claussmann}{\textcolor{secondarycolor}{@claussmann}}
+    \;\;\;\;\vspace{0.2cm}
+}
+\setbeamertemplate{itemize item}{\color{maincolor}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{secondarycolor}$\blacktriangleright$}
+
+%% Title slide at section
+\newcommand{\includesectiontitle}{
+    \begin{frame}
+        \begin{center}
+            \LARGE\textbf{\textcolor{thirdcolor}{\insertsection}}
+        \end{center}
+    \end{frame}
+}
+
+%% End-Slide
+\newcommand{\finalslide}[3]{
+    \begin{frame}{}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \textbf{\LARGE \textcolor{maincolor}{Christian Laussmann}}\\
+                \vspace{0.2cm}
+                \textbf{\large Computer Scientist}\\
+                \textbf{\large Software Developer}\\
+                \vspace{0.2cm}
+                \href{https://github.com/claussmann}{\textcolor{thirdcolor}{\emph{github.com/claussmann}}}\\
+                \emph{\textcolor{thirdcolor}{Add me on LinkedIn}}
+
+                \vspace{1cm}
+                \textbf{Selected Topics:}
+                \begin{itemize}
+                    \item #1
+                    \item #2
+                    \item #3
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \hspace*{5.6cm}
+                \includegraphics[width=2cm]{../logos/Logo}
+            \end{column}
+        \end{columns}
+        \begin{center}
+            \scriptsize\textbf{Mathematics must be respected.}
+        \end{center}
+    \end{frame}
+}
